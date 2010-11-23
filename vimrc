@@ -1,8 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","				"设置map前导符
-
 set nocompatible				"设置不兼容VI
 set linebreak					"英文单词换行时不截断
 set history=500
@@ -49,3 +47,16 @@ if has("autocmd")
 	autocmd FileType c,cpp,java set mps+==:;	"三元表达式配对
 	autocmd BufNewFile,BufRead,BufEnter,WinEnter,FileType *.m setfiletype objc
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    Short cuts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ","				"设置map前导符
+let g:mapleader = ","			"设置全局map前导符
+
+"保存
+"快速退出(保存)
+"快速退出(不保存)
+nmap <leader>s   :w!<cr>		
+nmap <leader>w   :wq!<cr>		
+nmap <leader>q   :q!<cr>		
