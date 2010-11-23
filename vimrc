@@ -60,3 +60,10 @@ let g:mapleader = ","			"设置全局map前导符
 nmap <leader>s   :w!<cr>		
 nmap <leader>w   :wq!<cr>		
 nmap <leader>q   :q!<cr>		
+" Normal Mode, Visual Mode, and Select Mode,
+" use <Tab> and <Shift-Tab> to indent
+" @see http://c9s.blogspot.com/2007/10/vim-tips.html
+nmap <tab> v>
+nmap <s-tab> v<
+vmap <tab> >gv
+vmap <s-tab> <gv
