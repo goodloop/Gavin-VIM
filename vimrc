@@ -31,10 +31,21 @@ set list						"显示tab及空格
 set listchars=tab:\|\ ,trail:-	"显示TAB的字符
 
 set matchpairs+=<:>				"书名号配对
-autocmd FileType c,cpp,java set mps+==:;	"三元表达式配对
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "colorscheme lucius
-syntax enable
+if has('syntax')
+	syntax enable
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    Auto Command
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("autocmd")
+	filetype plugin indent on	"打开文件类型检测
+	autocmd FileType c,cpp,java set mps+==:;	"三元表达式配对
+	autocmd BufNewFile,BufRead,BufEnter,WinEnter,FileType *.m setfiletype objc
+endif
