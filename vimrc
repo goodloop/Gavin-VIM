@@ -36,6 +36,8 @@ set matchpairs+=<:>				"书名号配对
 "colorscheme lucius
 if has('syntax')
 	syntax enable
+	syntax on
+	colorscheme desert
 endif
 
 
