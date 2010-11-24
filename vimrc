@@ -37,7 +37,7 @@ set matchpairs+=<:>				"书名号配对
 if has('syntax')
 	syntax enable
 	syntax on
-	colorscheme desert
+	colorscheme molokai
 endif
 
 
@@ -59,9 +59,9 @@ let g:mapleader = ","			"设置全局map前导符
 "保存
 "快速退出(保存)
 "快速退出(不保存)
-nmap <leader>s   :w!<cr>		
-nmap <leader>w   :wq!<cr>		
-nmap <leader>q   :q!<cr>		
+nmap <leader>s   :w!<cr>
+nmap <leader>w   :wq!<cr>
+nmap <leader>q   :q!<cr>
 " Normal Mode, Visual Mode, and Select Mode,
 " use <Tab> and <Shift-Tab> to indent
 " @see http://c9s.blogspot.com/2007/10/vim-tips.html
