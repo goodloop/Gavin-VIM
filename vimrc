@@ -30,6 +30,7 @@ set listchars=tab:\|\ ,trail:-	"显示TAB的字符
 
 set matchpairs+=<:>				"书名号配对
 
+set equalalways					"分割窗口总是等宽/高
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,6 +56,9 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","				"设置map前导符
 let g:mapleader = ","			"设置全局map前导符
+
+"快速编辑vim配置文件"
+nmap <leader>ec   :e ~/.vimrc<CR>
 
 "保存
 "快速退出(保存)
@@ -96,8 +100,12 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 
 "Windows Manager"
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
+let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
+let g:winManagerWidth = 30
+let g:defaultExplorer = 0
+nmap <C-W><C-F> :FirstExplorerWindow<cr>
+nmap <C-W><C-B> :BottomExplorerWindow<cr>
+nmap <silent> <leader>wm :WMToggle<cr>
 
 """"""""""""""""""""""""""""""
 " BufExplorer
