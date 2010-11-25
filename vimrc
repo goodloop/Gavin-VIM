@@ -86,3 +86,27 @@ function! ClosePair(char)
 		return a:char
 	endif
 endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    Plugin Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Taglist"
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+
+"Windows Manager"
+let g:winManagerWindowLayout='FileExplorer|TagList'
+nmap wm :WMToggle<cr>
+
+""""""""""""""""""""""""""""""
+" BufExplorer
+""""""""""""""""""""""""""""""
+let g:bufExplorerDefaultHelp=0       " Do not show default help.
+let g:bufExplorerShowRelativePath=1  " Show relative paths.
+let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+let g:bufExplorerSplitRight=0        " Split left
+let g:bufExplorerSplitVertical=1     " Split vertically
+let g:bufExplorerSplitVertSize = 30  " Split width
+let g:bufExplorerUseCurrentWindow=1  " Open in new window.
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
