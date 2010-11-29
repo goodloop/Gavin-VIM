@@ -108,9 +108,7 @@ nmap <C-W><C-F> :FirstExplorerWindow<cr>
 nmap <C-W><C-B> :BottomExplorerWindow<cr>
 nmap <silent> <leader>wm :WMToggle<cr>
 
-""""""""""""""""""""""""""""""
-" BufExplorer
-""""""""""""""""""""""""""""""
+" BufExplorer"
 let g:bufExplorerDefaultHelp=0       " Do not show default help.
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 let g:bufExplorerSortBy='mru'        " Sort by most recently used.
@@ -119,3 +117,13 @@ let g:bufExplorerSplitVertical=1     " Split vertically
 let g:bufExplorerSplitVertSize = 30  " Split width
 let g:bufExplorerUseCurrentWindow=1  " Open in new window.
 autocmd BufWinEnter \[Buf\ List\] setlocal nonumber
+
+" Command-T"
+let g:CommandTMaxHeight = 15
+set wildignore+=*.o,*.obj,.git,*.pyc
+noremap <leader>j :CommandT<cr>
+noremap <leader>y :CommandTFlush<cr>
+
+"omnicppcomplete"
+let OmniCpp_DisplayMode = 1
+let OmniCpp_MayCompleteScope = 1
