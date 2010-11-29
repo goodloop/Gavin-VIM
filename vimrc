@@ -49,6 +49,7 @@ if has("autocmd")
 	filetype plugin indent on	"打开文件类型检测
 	autocmd FileType c,cpp,java set mps+==:;	"三元表达式配对
 	autocmd BufNewFile,BufRead,BufEnter,WinEnter,FileType *.m setfiletype objc
+	autocmd BufWritePost .vimrc source ~/.vimrc	"如果配置文件变化了，自动重载
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,4 +118,4 @@ let g:bufExplorerSplitRight=0        " Split left
 let g:bufExplorerSplitVertical=1     " Split vertically
 let g:bufExplorerSplitVertSize = 30  " Split width
 let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
+autocmd BufWinEnter \[Buf\ List\] setlocal nonumber
