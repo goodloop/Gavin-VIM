@@ -5,6 +5,8 @@ set nocompatible				"设置不兼容VI
 set linebreak					"英文单词换行时不截断
 set history=500
 
+set mouse=a"设置可以使用鼠标
+
 set autoread					"自动重读
 
 set number						"显示行号
@@ -82,6 +84,8 @@ vmap <s-tab> <gv
 :inoremap } <c-r>=ClosePair('}')<CR>
 :inoremap [ []<ESC>i
 :inoremap ] <c-r>=ClosePair(']')<CR>
+:inoremap < <><ESC>i
+:inoremap > <c-r>=ClosePair('>')<CR>
 :inoremap " ""<ESC>i
 :inoremap ' ''<ESC>i
 function! ClosePair(char)
@@ -101,12 +105,13 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 
 "Windows Manager"
-let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
+let g:winManagerWindowLayout = "FileExplorer,BufExplorer|TagList"
 let g:winManagerWidth = 30
 let g:defaultExplorer = 0
 nmap <C-W><C-F> :FirstExplorerWindow<cr>
 nmap <C-W><C-B> :BottomExplorerWindow<cr>
 nmap <silent> <leader>wm :WMToggle<cr>
+autocmd BufWinEnter \[File\ List\] setlocal nonumber
 
 " BufExplorer"
 let g:bufExplorerDefaultHelp=0       " Do not show default help.
@@ -127,3 +132,13 @@ noremap <leader>y :CommandTFlush<cr>
 "omnicppcomplete"
 let OmniCpp_DisplayMode = 1
 let OmniCpp_MayCompleteScope = 1
+
+"minibuffer explorer"
+let g:miniBufExplMaxHeight = 3
+let g:miniBufExplMapWindowNavVim = 1 "Ctrl-<hjkl> to move to window 
+let g:miniBufExplTabWrap = 1         " make tabs show complete (no broken on two lines)
+
+"superTab"
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+let g:SuperTabMappingTabLiteral
