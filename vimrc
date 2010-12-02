@@ -159,6 +159,7 @@ if has("cscope")
 	set csto=0
 	set cst
 	set nocsverb
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
 	" add any database in current directory
 	if filereadable("cscope.out")
 		cs add cscope.out
@@ -178,7 +179,7 @@ nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" Using 'CTRL-spacebar' then a search type makes the vim window
+" Using 'CTRL-C' then a search type makes the vim window
 " split horizontally, with search result displayed in
 " the new window.
 
@@ -191,7 +192,7 @@ nmap <C-C>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-C>i :scs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-C>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
-" Hitting CTRL-space *twice* before the search type does a vertical
+" Hitting CTRL-C*twice* before the search type does a vertical
 " split instead of a horizontal one
 
 nmap <C-C><C-C>s
