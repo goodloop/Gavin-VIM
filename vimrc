@@ -5,7 +5,7 @@ set nocompatible				"设置不兼容VI
 set linebreak					"英文单词换行时不截断
 set history=500
 
-set mouse=a"设置可以使用鼠标
+set mouse=a						"设置可以使用鼠标
 
 set autoread					"自动重读
 
@@ -141,4 +141,3 @@ let g:miniBufExplTabWrap = 1         " make tabs show complete (no broken on two
 "superTab"
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-let g:SuperTabMappingTabLiteral
