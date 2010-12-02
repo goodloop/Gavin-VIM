@@ -5,7 +5,7 @@ set nocompatible				"设置不兼容VI
 set linebreak					"英文单词换行时不截断
 set history=500
 
-set mouse=a						"设置可以使用鼠标
+"set mouse=a						"设置可以使用鼠标
 
 set autoread					"自动重读
 
@@ -41,6 +41,7 @@ if has('syntax')
 	syntax enable
 	syntax on
 	colorscheme molokai
+	let g:molokai_original = 1
 endif
 
 
@@ -52,6 +53,7 @@ if has("autocmd")
 	autocmd FileType c,cpp,java set mps+==:;	"三元表达式配对
 	autocmd BufNewFile,BufRead,BufEnter,WinEnter,FileType *.m setfiletype objc
 	autocmd BufWritePost .vimrc source ~/.vimrc	"如果配置文件变化了，自动重载
+	autocmd BufWritePost vimrc source ~/.vimrc	"如果配置文件变化了，自动重载
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -141,3 +143,70 @@ let g:miniBufExplTabWrap = 1         " make tabs show complete (no broken on two
 "superTab"
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+
+"cscope"
+"
+"0 or s: Find this C symbol
+"1 or g: Find this definition
+"2 or d: Find functions called by this function
+"3 or c: Find functions calling this function
+"4 or t: Find this text string
+"6 or e: Find this egrep pattern
+"7 or f: Find this file
+"8 or i: Find files #including this file
+if has("cscope")
+	"set csprg=/usr/local/bin/cscope
+	set csto=0
+	set cst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+		cs add cscope.out
+	" else add database pointed to by environment
+	elseif $CSCOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+	set csverb
+endif
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Using 'CTRL-spacebar' then a search type makes the vim window
+" split horizontally, with search result displayed in
+" the new window.
+
+nmap <C-C>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-C>i :scs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-C>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Hitting CTRL-space *twice* before the search type does a vertical
+" split instead of a horizontal one
+
+nmap <C-C><C-C>s
+	\:vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C><C-C>g
+	\:vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C><C-C>c
+	\:vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C><C-C>t
+	\:vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C><C-C>e
+	\:vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-C><C-C>i
+	\:vert scs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-C><C-C>d
+	\:vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+
