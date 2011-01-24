@@ -2,7 +2,7 @@
 UseVimball
 finish
 ruby/command-t/controller.rb	[[[1
-299
+307
 # Copyright 2010 Wincent Colaiuta. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -141,6 +141,14 @@ module CommandT
 
     def cursor_start
       @prompt.cursor_start if @focus == @prompt
+    end
+
+    def leave
+      @match_window.leave
+    end
+
+    def unload
+      @match_window.unload
     end
 
   private
@@ -390,7 +398,7 @@ module CommandT
   end # class Finder
 end # CommandT
 ruby/command-t/match_window.rb	[[[1
-361
+375
 # Copyright 2010 Wincent Colaiuta. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -472,7 +480,7 @@ module CommandT
         ].each { |command| ::VIM::command command }
 
         # sanity check: make sure the buffer really was created
-        raise "Can't find GoToFile buffer" unless $curbuf.name.match /GoToFile/
+        raise "Can't find GoToFile buffer" unless $curbuf.name.match /GoToFile\z/
         @@buffer = $curbuf
       end
 
@@ -490,6 +498,12 @@ module CommandT
         hide_cursor
       end
 
+      # perform cleanup using an autocmd to ensure we don't get caught out
+      # by some unexpected means of dismissing or leaving the Command-T window
+      # (eg. <C-W q>, <C-W k> etc)
+      ::VIM::command 'autocmd! * <buffer>'
+      ::VIM::command 'autocmd BufLeave <buffer> ruby $command_t.leave'
+      ::VIM::command 'autocmd BufUnload <buffer> ruby $command_t.unload'
 
       @has_focus  = false
       @selection  = nil
@@ -508,11 +522,19 @@ module CommandT
       # For more details, see: https://wincent.com/issues/1617
       if $curbuf.number == 0
         # use bwipeout as bunload fails if passed the name of a hidden buffer
-        ::VIM::command "bwipeout! GoToFile"
+        ::VIM::command 'bwipeout! GoToFile'
         @@buffer = nil
       else
         ::VIM::command "bunload! #{@@buffer.number}"
       end
+    end
+
+    def leave
+      close
+      unload
+    end
+
+    def unload
       restore_window_dimensions
       @settings.restore
       @prompt.dispose
@@ -1324,7 +1346,7 @@ void Init_ext()
 
     // methods
     rb_define_method(cCommandTMatcher, "initialize", CommandTMatcher_initialize, -1);
-    rb_define_method(cCommandTMatcher, "sorted_matches_for", CommandTMatcher_sorted_matchers_for, 2);
+    rb_define_method(cCommandTMatcher, "sorted_matches_for", CommandTMatcher_sorted_matches_for, 2);
     rb_define_method(cCommandTMatcher, "matches_for", CommandTMatcher_matches_for, 1);
 }
 ruby/command-t/match.c	[[[1
@@ -1618,7 +1640,7 @@ VALUE CommandTMatcher_initialize(int argc, VALUE *argv, VALUE self)
     return Qnil;
 }
 
-VALUE CommandTMatcher_sorted_matchers_for(VALUE self, VALUE abbrev, VALUE options)
+VALUE CommandTMatcher_sorted_matches_for(VALUE self, VALUE abbrev, VALUE options)
 {
     // process optional options hash
     VALUE limit_option = CommandT_option_from_hash("limit", options);
@@ -1637,7 +1659,7 @@ VALUE CommandTMatcher_sorted_matchers_for(VALUE self, VALUE abbrev, VALUE option
 
     // apply optional limit option
     long limit = NIL_P(limit_option) ? 0 : NUM2LONG(limit_option);
-    if (limit == 0 || RARRAY_LEN(matches)< limit)
+    if (limit == 0 || RARRAY_LEN(matches) < limit)
         limit = RARRAY_LEN(matches);
 
     // will return an array of strings, not an array of Match objects
@@ -1781,7 +1803,7 @@ ruby/command-t/matcher.h	[[[1
 #include <ruby.h>
 
 extern VALUE CommandTMatcher_initialize(int argc, VALUE *argv, VALUE self);
-extern VALUE CommandTMatcher_sorted_matchers_for(VALUE self, VALUE abbrev, VALUE options);
+extern VALUE CommandTMatcher_sorted_matches_for(VALUE self, VALUE abbrev, VALUE options);
 
 // most likely the function will be subsumed by the sorted_matcher_for function
 extern VALUE CommandTMatcher_matches_for(VALUE self, VALUE abbrev);
@@ -1863,7 +1885,7 @@ ruby/command-t/depend	[[[1
 
 CFLAGS += -std=c99 -Wall -Wextra -Wno-unused-parameter
 doc/command-t.txt	[[[1
-729
+736
 *command-t.txt* Command-T plug-in for Vim         *command-t*
 
 CONTENTS                                        *command-t-contents*
@@ -2461,7 +2483,7 @@ PayPal to win@wincent.com:
 
 LICENSE                                         *command-t-license*
 
-Copyright 2010 Wincent Colaiuta. All rights reserved.
+Copyright 2010-2011 Wincent Colaiuta. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -2486,6 +2508,13 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 HISTORY                                         *command-t-history*
+
+1.0.1 (5 January 2011)
+
+- work around bug when mapping |:CommandTFlush|, wherein the default mapping
+  for |:CommandT| would not be set up
+- clean up when leaving the Command-T buffer via unexpected means (such as
+  with <C-W k> or similar)
 
 1.0 (26 November 2010)
 
@@ -2627,7 +2656,7 @@ let g:command_t_loaded = 1
 command -nargs=? -complete=dir CommandT call <SID>CommandTShow(<q-args>)
 command CommandTFlush call <SID>CommandTFlush()
 
-if !hasmapto('CommandT')
+if !hasmapto(':CommandT<CR>')
   silent! nmap <unique> <silent> <Leader>t :CommandT<CR>
 endif
 
