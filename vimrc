@@ -40,8 +40,7 @@ set equalalways					"分割窗口总是等宽/高
 if has('syntax')
 	syntax enable
 	syntax on
-	colorscheme molokai
-	let g:molokai_original = 1
+	colorscheme macvim
 endif
 
 
