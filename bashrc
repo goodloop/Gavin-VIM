@@ -2,8 +2,15 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
+SYSTEM=`uname`
+if [ "$SYSTEM" = "Darwin" ]
+then
+export CLICOLOR="xterm-color"
+else
 alias ls='ls --color=auto'
-alias ll='ls -la'
+fi
+alias ll='ls -l'
+alias la="ls -a"
 alias sudo='sudo -E'
 export PATH=$PATH:~/bin/:/opt/java/bin/
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
