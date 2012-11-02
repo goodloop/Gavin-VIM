@@ -2,6 +2,34 @@
 "   General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible				"设置不兼容VI
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+"let vundle manage vundle
+"required
+Bundle 'gmarik/vundle'
+
+Bundle 'molokai'
+Bundle 'netrw.vim'
+Bundle 'winmanager'
+Bundle 'Vimball'
+Bundle 'a.vim'
+Bundle 'OmniCppComplete'
+Bundle 'FencView.vim'
+Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'The-NERD-Commenter'
+Bundle 'taglist.vim'
+Bundle 'Mark'
+Bundle 'bufexplorer.zip'
+Bundle 'genutils'
+Bundle 'TabBar'
+"dependency for vim-snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle 'garbas/vim-snipmate'
+filetype plugin indent on
+
 set linebreak					"英文单词换行时不截断
 set history=500
 
