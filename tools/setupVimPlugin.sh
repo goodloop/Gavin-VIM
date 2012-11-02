@@ -1,27 +1,25 @@
 #!/bin/sh
-#check if .vim has been setup?if not setup it
-if [ -d ~/.vim/ ]
+if [ -L ~/.vim ]
 then
-	#do nothing
-	echo ".vim exist"
-else
-	echo "this user don't have .vim directory, I'll setup one for him"
-	curDir=`pwd`
-	echo "$curDir"
-	`ln -s $curDir/../vimfiles ~/.vim`
+	echo "remove original symbolic link ~/.vim"
+	rm ~/.vim
 fi
-if [ -f ~/.vimrc ]
+echo "update .vim directory symbolic link"
+curDir=`pwd`
+ln -s $curDir/../vimfiles ~/.vim
+
+if [ -L ~/.vimrc]
 then
-	#do nothing
-	echo ".vimrc exist!"
-else
-	echo "this user don't have .vimrc, I'll setup one for him"
-	curDir=`pwd`
-	echo "$curDir"
-	`ln -s $curDir/../vimrc ~/.vimrc`
+	echo "remove original symbolic link ~/.vimrc"
+	rm ~/.vimrc
 fi
+echo "update .vimrc symbolic link"
+curDir=`pwd`
+ln -s $curDir/../vimrc ~/.vimrc
+
 #install all bundle in vimrc
-`vim +BundleInstall +qall!`
+echo "Install plugin in Vundle"
+vim +BundleInstall +qall!
 
 
 #do extra things
