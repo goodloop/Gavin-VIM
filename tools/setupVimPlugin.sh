@@ -22,11 +22,13 @@ then
 	cd ..
 	git submodule init
 	git submodule update
+	cd $curDir/../vimfiles/bundle/vundle
+	git checkout master
 fi
 
 #install all bundle in vimrc
 echo "Install plugin in Vundle"
-vim +BundleInstall +qall!
+vim +BundleInstall! +qall!
 
 
 #do extra things
