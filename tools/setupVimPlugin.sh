@@ -8,7 +8,7 @@ echo "update .vim directory symbolic link"
 curDir=`pwd`
 ln -s $curDir/../vimfiles ~/.vim
 
-if [ -L ~/.vimrc]
+if [ -L ~/.vimrc ]
 then
 	echo "remove original symbolic link ~/.vimrc"
 	rm ~/.vimrc
