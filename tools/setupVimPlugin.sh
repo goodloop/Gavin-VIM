@@ -28,7 +28,7 @@ fi
 
 #install all bundle in vimrc
 echo "Install plugin in Vundle"
-vim +BundleInstall! +qall!
+vim +BundleClean +BundleInstall! +qall!
 
 
 #do extra things

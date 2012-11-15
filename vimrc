@@ -19,11 +19,12 @@ Bundle 'OmniCppComplete'
 Bundle 'FencView.vim'
 Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'The-NERD-Commenter'
-Bundle 'taglist.vim'
 Bundle 'Mark'
 Bundle 'bufexplorer.zip'
 Bundle 'genutils'
 Bundle 'TabBar'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'majutsushi/tagbar'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -238,4 +239,7 @@ nmap <C-C><C-C>i
 nmap <C-C><C-C>d
 	\:vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
-
+"map F8 to open tagbar
+nmap <F8> :TagbarToggle<CR>
+"powerline
+set laststatus=2
