@@ -91,6 +91,12 @@ endif
 let mapleader = ","				"设置map前导符
 let g:mapleader = ","			"设置全局map前导符
 
+"快速切换窗口
+nnoremap <C-H>  <C-W><C-H>
+nnoremap <C-J>  <C-W><C-J>
+nnoremap <C-K>  <C-W><C-K>
+nnoremap <C-L>  <C-W><C-L>
+
 "快速编辑vim配置文件"
 nmap <leader>ec   :e ~/.vimrc<CR>
 
@@ -131,10 +137,6 @@ vmap <s-tab> <gv
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "    Plugin Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Taglist"
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-
 "Windows Manager"
 let g:winManagerWindowLayout = "FileExplorer,BufExplorer|TagList"
 let g:winManagerWidth = 30
