@@ -166,11 +166,6 @@ noremap <leader>y :CommandTFlush<cr>
 let OmniCpp_DisplayMode = 1
 let OmniCpp_MayCompleteScope = 1
 
-"minibuffer explorer"
-let g:miniBufExplMaxHeight = 3
-let g:miniBufExplMapWindowNavVim = 1 "Ctrl-<hjkl> to move to window 
-let g:miniBufExplTabWrap = 1         " make tabs show complete (no broken on two lines)
-
 "superTab"
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
