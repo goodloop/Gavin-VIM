@@ -25,6 +25,8 @@ Bundle 'genutils'
 Bundle 'TabBar'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'majutsushi/tagbar'
+Bundle 'CSApprox'
+Bundle 'TagHighlight'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -66,11 +68,14 @@ set equalalways					"分割窗口总是等宽/高
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CSApprox
+set t_Co=256
+let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 "colorscheme lucius
 if has('syntax')
 	syntax enable
 	syntax on
-	colorscheme macvim
+	colorscheme molokai
 endif
 
 
@@ -138,7 +143,7 @@ vmap <s-tab> <gv
 "    Plugin Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Windows Manager"
-let g:winManagerWindowLayout = "FileExplorer,BufExplorer|TagList"
+let g:winManagerWindowLayout = "FileExplorer,BufExplorer|TagBar"
 let g:winManagerWidth = 30
 let g:defaultExplorer = 0
 nmap <C-W><C-F> :FirstExplorerWindow<cr>
@@ -181,7 +186,11 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 "7 or f: Find this file
 "8 or i: Find files #including this file
 if has("cscope")
-	"set csprg=/usr/local/bin/cscope
+	if has("mac")
+		set csprg=/opt/local/bin/cscope
+	else
+		set csprg=/usr/local/bin/cscope
+	endif
 	set csto=0
 	set cst
 	set nocsverb
@@ -238,5 +247,13 @@ nmap <C-C><C-C>d
 
 "map F8 to open tagbar
 nmap <F8> :TagbarToggle<CR>
+
 "powerline
 set laststatus=2
+
+" taghighlight
+if ! exists('g:TagHighlightSettings')
+	let g:TagHighlightSettings = {}
+endif
+let g:TagHighlightSettings['TagFileName'] = 'tagfile'
+nmap <leader>re :UpdateTypesFile<CR>
