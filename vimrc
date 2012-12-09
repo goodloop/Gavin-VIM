@@ -9,7 +9,6 @@ call vundle#rc()
 "required
 Bundle 'gmarik/vundle'
 
-Bundle 'molokai'
 Bundle 'ervandew/supertab'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'netrw.vim'
