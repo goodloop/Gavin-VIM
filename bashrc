@@ -11,6 +11,7 @@ alias ls='ls --color=auto'
 fi
 alias ll='ls -l'
 alias la="ls -a"
+alias tmux="tmux -2"
 alias sudo='sudo -E'
 export PATH=$PATH:~/bin/:/opt/java/bin/
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
