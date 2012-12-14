@@ -65,6 +65,7 @@ set listchars=tab:\|\ ,trail:-	"显示TAB的字符
 set matchpairs+=<:>				"书名号配对
 
 set equalalways					"分割窗口总是等宽/高
+set backspace=2					"backspace的作用，删除eol
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
