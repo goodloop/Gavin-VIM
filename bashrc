@@ -9,7 +9,7 @@ export CLICOLOR="xterm-color"
 else
 alias ls='ls --color=auto'
 fi
-alias ll='ls -l'
+alias ll='ls -la'
 alias la="ls -a"
 alias tmux="tmux -2"
 alias sudo='sudo -E'

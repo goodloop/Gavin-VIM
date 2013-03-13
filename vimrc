@@ -187,7 +187,7 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 "7 or f: Find this file
 "8 or i: Find files #including this file
 if has("cscope")
-	if has("mac")
+	if has("mac")|| has("macunix")
 		set csprg=/opt/local/bin/cscope
 	else
 		set csprg=/usr/local/bin/cscope
