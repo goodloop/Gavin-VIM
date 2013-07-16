@@ -24,9 +24,11 @@ Bundle 'bufexplorer.zip'
 Bundle 'genutils'
 Bundle 'TabBar'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
 Bundle 'CSApprox'
 Bundle 'TagHighlight'
+Bundle 'jnwhiteh/vim-golang'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
