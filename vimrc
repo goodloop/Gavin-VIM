@@ -3,11 +3,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible				"设置不兼容VI
 filetype off
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 "let vundle manage vundle
 "required
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 Bundle 'ervandew/supertab'
 Bundle 'nanotech/jellybeans.vim'
@@ -32,7 +32,7 @@ Bundle 'jnwhiteh/vim-golang'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
+Bundle "honza/vim-snippets"
 Bundle 'garbas/vim-snipmate'
 filetype plugin indent on
 
