@@ -30,6 +30,8 @@ Bundle 'CSApprox'
 Bundle 'TagHighlight'
 Bundle 'jnwhiteh/vim-golang'
 Plugin 'Keithbsmiley/swift.vim'
+Plugin 'altercation/vim-colors-solarized'
+Bundle 'wakatime/vim-wakatime'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -73,13 +75,14 @@ set backspace=2					"backspace的作用，删除eol
 "   Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CSApprox
+set background=dark
+colorscheme molokai
 set t_Co=256
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 "colorscheme lucius
 if has('syntax')
 	syntax enable
 	syntax on
-	colorscheme molokai
 endif
 
 
