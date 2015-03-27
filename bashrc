@@ -17,6 +17,16 @@ export GOPATH=~/go
 export PATH=$PATH:~/bin/:/opt/java/bin/:$GOPATH/bin
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 export EDITOR=vim
+function mkdirandcp()
+{
+	if [[ -z "$1" || -z "$2" ]]; then
+		cp
+		return 1;
+	fi
+	mkdir -p "$2"
+	cp -r "$1" "$2"
+}
+alias cp="mkdirandcp"
 #PS1='[\u@\h \W]\$ '
 TTY_IP=${SSH_CLIENT%% *}
 PS1="\n\[\033[1;36m\][bg jobs:\j\[\033[1;36m\]]\[\033[0;37m\] \t \
