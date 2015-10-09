@@ -23,15 +23,15 @@ Bundle 'Mark'
 Bundle 'bufexplorer.zip'
 Bundle 'genutils'
 Bundle 'TabBar'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
 Bundle 'CSApprox'
 Bundle 'TagHighlight'
-Bundle 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
 Plugin 'Keithbsmiley/swift.vim'
 Plugin 'altercation/vim-colors-solarized'
 Bundle 'wakatime/vim-wakatime'
+Plugin 'bling/vim-airline'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -193,11 +193,7 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 "7 or f: Find this file
 "8 or i: Find files #including this file
 if has("cscope")
-	if has("mac")|| has("macunix")
-		set csprg=/opt/local/bin/cscope
-	else
-		set csprg=/usr/local/bin/cscope
-	endif
+	set csprg=/usr/local/bin/cscope
 	set csto=0
 	set cst
 	set nocsverb
@@ -255,8 +251,6 @@ nmap <C-C><C-C>d
 "map F8 to open tagbar
 nmap <F8> :TagbarToggle<CR>
 
-"powerline
-set laststatus=2
 
 " taghighlight
 if ! exists('g:TagHighlightSettings')
