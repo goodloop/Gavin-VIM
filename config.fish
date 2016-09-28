@@ -10,3 +10,6 @@ function yoink
 open -a Yoink $argv
 end
 
+function fish_greeting
+    echo "Gavin, Welcome to the macOS Fish world!"
+end
