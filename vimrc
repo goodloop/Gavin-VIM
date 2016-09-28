@@ -32,6 +32,7 @@ Plugin 'Keithbsmiley/swift.vim'
 Plugin 'altercation/vim-colors-solarized'
 Bundle 'wakatime/vim-wakatime'
 Plugin 'bling/vim-airline'
+Plugin 'terryma/vim-multiple-cursors'
 "dependency for vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
