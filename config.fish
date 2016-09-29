@@ -1,4 +1,5 @@
 set -x PATH ~/android-ndk/ $PATH
+alias vi "vim"
 
 function fish_right_prompt
 date "+%Y/%m/%d %H:%M:%S"
