@@ -28,6 +28,15 @@ function mkdirandcp()
 }
 alias cp="mkdirandcp"
 #PS1='[\u@\h \W]\$ '
+export http_proxy=`scutil --proxy | awk '\
+	/HTTPEnable/ { http_enabled = $3; } \
+	/HTTPProxy/ { http_server = $3; } \
+	/HTTPPort/ { http_port = $3; } \
+	/SOCKSEnable/ { socks_enabled = $3; } \
+	/SOCKSProxy/ { socks_server = $3; } \
+	/SOCKSPort/ { socks_port = $3; } \
+	END { if (socks_enabled == "1") { print "socks5://" socks_server ":" socks_port; } \
+	     else if(http_enabled == "1") { print "http://" http_server ":" http_port; } }'`
 TTY_IP=${SSH_CLIENT%% *}
 PS1="\n\[\033[1;36m\][bg jobs:\j\[\033[1;36m\]]\[\033[0;37m\] \t \
 	\[\033[1;37m\][\[\033[1;34m\]\u@\H\[\033[1;37m\]:\[\033[0;32m\]${TTY_IP:-local}-${SSH_TTY:-`tty`} \

@@ -6,8 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-
+ZSH_THEME="agnoster" 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -105,7 +104,6 @@ compdef _file yoink
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/Volumes/Code/code/chromium/depot_tools"
 
 #for vlc build
@@ -120,14 +118,17 @@ export PATH=$PATH:/usr/texbin/
 export NVM_DIR="/Users/gavin/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-#for cuda
-export PATH=/Developer/NVIDIA/CUDA-7.5/bin:$PATH
-export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.5/lib:$DYLD_LIBRARY_PATH
+##for cuda
+#export CUDA_HOME=/Developer/NVIDIA/CUDA-8.0
+#export PATH=/Developer/NVIDIA/CUDA-8.0/bin:$PATH
+#export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib:$DYLD_LIBRARY_PATH
 
+# Python
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Python virtualenvs
 export WORKON_HOME=$HOME/.virtualenvs  #虚拟环境安装的目录
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
@@ -138,6 +139,22 @@ else
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export http_proxy=`scutil --proxy | awk '\
+	/HTTPEnable/ { http_enabled = $3; } \
+	/HTTPProxy/ { http_server = $3; } \
+	/HTTPPort/ { http_port = $3; } \
+	/SOCKSEnable/ { socks_enabled = $3; } \
+	/SOCKSProxy/ { socks_server = $3; } \
+	/SOCKSPort/ { socks_port = $3; } \
+	END { if (socks_enabled == "1") { print "socks5://" socks_server ":" socks_port; } \
+	     else if(http_enabled == "1") { print "http://" http_server ":" http_port; } }'`
+
+#zsh autosuggestion
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=yellow'
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 export GVM_DIR="/Users/gavin/.gvm"
