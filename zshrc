@@ -80,7 +80,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PS1='%* '$PROMPT
+export PS1='%* '$PROMPT$'\n\$'
 export EDITOR="vim"
 alias vi="vim"
 export ANDROID_HOME=/Volumes/HD/android/android-sdk-mac_86
@@ -124,7 +124,9 @@ export NVM_DIR="/Users/gavin/.nvm"
 #export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib:$DYLD_LIBRARY_PATH
 
 # Python
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+# export PATH="/Users/gavin/anaconda3/bin:$PATH"
 
 # Python virtualenvs
 export WORKON_HOME=$HOME/.virtualenvs  #虚拟环境安装的目录
@@ -140,23 +142,32 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export http_proxy=`scutil --proxy | awk '\
-	/HTTPEnable/ { http_enabled = $3; } \
-	/HTTPProxy/ { http_server = $3; } \
-	/HTTPPort/ { http_port = $3; } \
-	/SOCKSEnable/ { socks_enabled = $3; } \
-	/SOCKSProxy/ { socks_server = $3; } \
-	/SOCKSPort/ { socks_port = $3; } \
-	END { if (socks_enabled == "1") { print "socks5://" socks_server ":" socks_port; } \
-	     else if(http_enabled == "1") { print "http://" http_server ":" http_port; } }'`
+#export http_proxy=`scutil --proxy | awk '\
+	#/HTTPEnable/ { http_enabled = $3; } \
+	#/HTTPProxy/ { http_server = $3; } \
+	#/HTTPPort/ { http_port = $3; } \
+	#END { if (socks_enabled == "1") { print "socks5://" socks_server ":" socks_port; } \
+		 #else if(http_enabled == "1") { print "http://" http_server ":" http_port; } }'`
 
+	#/SOCKSEnable/ { socks_enabled = $3; } \
+	#/SOCKSProxy/ { socks_server = $3; } \
+	#/SOCKSPort/ { socks_port = $3; } \
+	
 #zsh autosuggestion
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=yellow'
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
+export MXNET_GLUON_REPO=https://apache-mxnet.s3.cn-north-1.amazonaws.com.cn/ jupyter notebook
+
+
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 export GVM_DIR="/Users/gavin/.gvm"
 [[ -s "/Users/gavin/.gvm/bin/gvm-init.sh" ]] && source "/Users/gavin/.gvm/bin/gvm-init.sh"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 
