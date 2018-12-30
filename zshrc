@@ -45,7 +45,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx svn pip brew brew-cask golang docker vagrant fasd pod repo sbt supervisor tmux zsh-completions)
+plugins=(git osx svn pip brew brew-cask golang docker vagrant fasd pod repo sbt supervisor tmux zsh-completions zsh-syntax-highlighting)
 
 
 # User configuration
@@ -160,6 +160,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=yellow'
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 export MXNET_GLUON_REPO=https://apache-mxnet.s3.cn-north-1.amazonaws.com.cn/ jupyter notebook
+export OPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2p
 
 
 
